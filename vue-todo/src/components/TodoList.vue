@@ -1,8 +1,11 @@
 <template>
   <div>
     <ul>
-      <li v-for="todoItem in todoItems" v-bind:key="todoItem">
+      <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
         {{ todoItem }}
+        <span class="removeBtn" v-on:click="reomoveItem(todoItem, index)">
+          <i class="fas fa-trash-alt"></i>
+        </span>
       </li>
     </ul>
   </div>
@@ -15,6 +18,13 @@ export default {
       todoItems: [],
     };
   },
+  methods: {
+    reomoveItem: function (todoItem, index) {
+      localStorage.removeItem(todoItem);
+      this.todoItems.splice(index, 1);
+    },
+  },
+  // 인스턴스가 생성되자마자 호출
   created: function () {
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
@@ -24,7 +34,7 @@ export default {
         }
       }
     }
-  }, // 인스턴스가 생성되자마자 호출
+  },
 };
 </script>
 
@@ -56,5 +66,9 @@ li {
 .textCompleted {
   text-decoration: line-through;
   color: #b3adad;
+}
+.removeBtn {
+  margin-left: auto;
+  color: #de4343;
 }
 </style>
