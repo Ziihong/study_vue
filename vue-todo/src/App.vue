@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader />
     <TodoInput v-on:addNewItem="addOneItem" />
-    <TodoList v-bind:propsdata="todoItems" />
+    <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem" />
     <TodoFooter />
   </div>
 </template>
@@ -24,6 +24,10 @@ export default {
       let obj = { completed: false, item: newItem };
       localStorage.setItem(newItem, JSON.stringify(obj));
       this.todoItems.push(obj);
+    },
+    removeOneItem: function (todoItem, index) {
+      localStorage.removeItem(todoItem.item);
+      this.todoItems.splice(index, 1);
     },
   },
   // 인스턴스가 생성되자마자 호출
