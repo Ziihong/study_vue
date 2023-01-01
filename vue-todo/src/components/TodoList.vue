@@ -4,7 +4,7 @@
       <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item">
         <i
           class="checkBtn fas fa-check"
-          v-on:click="toggleComplete"
+          v-on:click="toggleComplete(todoItem)"
           v-bind:class="{ checkBtnCompleted: todoItem.completed }"
         ></i
         ><span v-bind:class="{ textCompleted: todoItem.completed }">{{
@@ -27,13 +27,13 @@ export default {
   },
   methods: {
     reomoveItem: function (todoItem, index) {
-      localStorage.removeItem(todoItem);
+      localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
     toggleComplete: function (todoItem) {
       todoItem.completed = !todoItem.completed;
       // localStorage 변경된 정보 저장
-      localStorage.removeItem(todoItem.item);
+      localStorage.removeItem(todoItem);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
   },
