@@ -18,8 +18,7 @@ export default {
   methods: {
     addTodo: function () {
       if (this.newTodoInput !== "") {
-        let obj = { completed: false, item: this.newTodoInput };
-        localStorage.setItem(this.newTodoInput, JSON.stringify(obj));
+        this.$emit("addNewItem", this.newTodoInput); // 하위 컴포넌트에서 발생한 이벤트를 상위 컴포넌트에 전달
         this.clearInput();
       }
     },

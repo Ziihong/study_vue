@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader />
-    <TodoInput />
+    <TodoInput v-on:addNewItem="addOneItem" />
     <TodoList v-bind:propsdata="todoItems" />
     <TodoFooter />
   </div>
@@ -18,6 +18,13 @@ export default {
     return {
       todoItems: [],
     };
+  },
+  methods: {
+    addOneItem: function (newItem) {
+      let obj = { completed: false, item: newItem };
+      localStorage.setItem(newItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
+    },
   },
   // 인스턴스가 생성되자마자 호출
   created: function () {
