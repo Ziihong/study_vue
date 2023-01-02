@@ -1,17 +1,28 @@
-<template>
+<template v-slot:header>
   <div class="inputBox">
     <input type="text" v-model="newTodoInput" v-on:keyup.enter="addTodo" />
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
+
+    <AlertModal v-if="showModal" @close="showModal = false">
+      <!--
+    you can use custom content here to overwrite
+    default content
+    -->
+      <h3 slot:header>경고</h3>
+    </AlertModal>
   </div>
 </template>
 
 <script>
+import AlertModal from "./common/AlertModal.vue";
+
 export default {
   data: function () {
     return {
       newTodoInput: "",
+      showModal: false,
     };
   },
 
@@ -20,10 +31,15 @@ export default {
       if (this.newTodoInput !== "") {
         this.$emit("addNewItem", this.newTodoInput); // 하위 컴포넌트에서 발생한 이벤트를 상위 컴포넌트에 전달
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput: function () {
       this.newTodoInput = "";
+    },
+    components: {
+      AlertModal: AlertModal,
     },
   },
 };
