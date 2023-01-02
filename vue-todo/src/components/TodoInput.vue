@@ -10,7 +10,13 @@
     default content
     -->
       <template v-slot:header>
-        <h3>경고</h3>
+        <h3>
+          경고
+          <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
+        </h3>
+      </template>
+      <template v-slot:body>
+        <h3>입력하지 않으셨습니다.</h3>
       </template>
     </AlertModal>
   </div>
@@ -70,5 +76,8 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+.closeModalBtn {
+  color: #42b983;
 }
 </style>
