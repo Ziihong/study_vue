@@ -26,7 +26,7 @@
 import AlertModal from "./common/AlertModal.vue";
 
 export default {
-  data: function () {
+  data() {
     return {
       newTodoInput: "",
       showModal: false,
@@ -34,7 +34,7 @@ export default {
   },
 
   methods: {
-    addTodo: function () {
+    addTodo() {
       if (this.newTodoInput !== "") {
         this.$emit("addNewItem", this.newTodoInput); // 하위 컴포넌트에서 발생한 이벤트를 상위 컴포넌트에 전달
         this.clearInput();
@@ -42,12 +42,12 @@ export default {
         this.showModal = !this.showModal;
       }
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodoInput = "";
     },
   },
   components: {
-    AlertModal: AlertModal,
+    AlertModal,
   },
 };
 </script>

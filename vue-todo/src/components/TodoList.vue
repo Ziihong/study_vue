@@ -22,10 +22,10 @@
 export default {
   props: ["propsdata"],
   methods: {
-    reomoveTodo: function (todoItem, index) {
+    reomoveTodo(todoItem, index) {
       this.$emit("removeItem", todoItem, index);
     },
-    toggleComplete: function (todoItem, index) {
+    toggleComplete(todoItem, index) {
       this.$emit("toggleItem", todoItem, index);
     },
   },
