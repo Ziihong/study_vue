@@ -1,7 +1,10 @@
 <template>
   <div>
     <transition-group name="list" tag="ul">
-      <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
+      <li
+        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-bind:key="todoItem.item"
+      >
         <i
           class="checkBtn fas fa-check"
           v-on:click="toggleComplete(todoItem, index)"
