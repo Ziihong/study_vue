@@ -36,7 +36,8 @@ export default {
   methods: {
     addTodo() {
       if (this.newTodoInput !== "") {
-        this.$emit("addNewItem", this.newTodoInput); // 하위 컴포넌트에서 발생한 이벤트를 상위 컴포넌트에 전달
+        // this.$emit("addNewItem", this.newTodoInput); // 하위 컴포넌트에서 발생한 이벤트를 상위 컴포넌트에 전달
+        this.$store.commit("addOneItem", this.newTodoInput);
         this.clearInput();
       } else {
         this.showModal = !this.showModal;
