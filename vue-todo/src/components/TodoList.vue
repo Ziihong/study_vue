@@ -2,7 +2,7 @@
   <div>
     <transition-group name="list" tag="ul">
       <li
-        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-for="(todoItem, index) in this.getTodoItems"
         v-bind:key="todoItem.item"
       >
         <i
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   methods: {
     reomoveTodo(todoItem, index) {
@@ -38,6 +40,12 @@ export default {
         index,
       });
     },
+  },
+  computed: {
+    // todoItems() {
+    //   return this.$store.getters.getTodoItems;
+    // },
+    ...mapGetters(["getTodoItems"]),
   },
 };
 </script>
